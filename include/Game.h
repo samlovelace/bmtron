@@ -7,7 +7,15 @@ public:
     Game();
     ~Game();
 
-    void init(); 
+    struct Settings
+    {
+        int mNumberOfSnakes; 
+        std::vector<sf::Color> mColorOfEachSnake; 
+        std::map<int, std::vector<std::pair<int, int>>> mNumSnakesStartingPos; 
+    };
+    
+
+    void init(Game::Settings aSettingsStruct); 
 
     void update(); 
 
@@ -21,6 +29,8 @@ public:
 private:
     std::vector<Snake*> mSnakes; 
     AI* mAI; 
+
+    std::vector<int> getSnakeStartingLocation(int aNumberOfSnakes, int aSnakeId); 
 
 };
 

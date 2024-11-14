@@ -3,7 +3,7 @@
 #include <iostream> 
 
 
-Snake::Snake(sf::Color aColor) : mColor(aColor), mNumSegments(3), mSegments(), mUserControlled(false)
+Snake::Snake(sf::Color aColor, int aSnakeId) : mColor(aColor), mNumSegments(3), mId(aSnakeId), mSegments(), mUserControlled(false)
 {
 }
 
@@ -110,15 +110,15 @@ void Snake::reset()
 
     mSegments.clear(); 
 
-    if(1 == mSnakeNum)
+    if(0 == mId)
     {
         init(X1, Y1); 
     }
-    else if (2 == mSnakeNum)
+    else if (1 == mId)
     {
         init(X2, Y2); 
     }
-    else if (3 == mSnakeNum)
+    else if (2 == mId)
     {
         init(300, 300); 
     }

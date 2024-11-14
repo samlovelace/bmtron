@@ -1,5 +1,6 @@
 
 #include "Game.h"
+#include <iostream>
 
 Game::Game() : mSnakes(), mAI(new AI())
 {
@@ -10,30 +11,26 @@ Game::~Game()
 }
 
 
-void Game::init()
+void Game::init(Game::Settings aSettingsStruct)
 {
-    // do for any configured number of snakes 
-    Snake* snake = new Snake(sf::Color::Green);
+    // setup each snake 
+    for(int snakeId = 0; snakeId < aSettingsStruct.mNumberOfSnakes; snakeId++)
+    { 
+        Snake* snake = new Snake(aSettingsStruct.mColorOfEachSnake[snakeId], snakeId); 
 
-    snake->init(X1, Y1); 
-    snake->setSnakeNumber(1); 
-    snake->setUserControlled(true); 
+        std::vector<int> start = getSnakeStartingLocation(aSettingsStruct.mNumberOfSnakes, snakeId); 
+        snake->init(start[0], start[1]); 
 
-    mSnakes.push_back(snake);  
+        if(0 == snakeId)
+        {
+            snake->setUserControlled(true); 
+        }
+        else{
+            snake->setUserControlled(false); 
+        }
 
-    Snake* other = new Snake(sf::Color::Blue); 
-    other->init(X2, Y2); 
-    other->setSnakeNumber(2); 
-    other->setUserControlled(false); 
-    mSnakes.push_back(other); 
-
-    // Snake* another = new Snake(sf::Color::Magenta); 
-    // another->init(300, 300); 
-    // another->setSnakeNumber(3); 
-    // another->setUserControlled(false); 
-
-    // mSnakes.push_back(another); 
-
+        mSnakes.push_back(snake); 
+    }
 }
 
 void Game::update()
@@ -80,5 +77,30 @@ void Game::reset()
     {
         snake->reset(); 
     }
+}
+
+std::vector<int> Game::getSnakeStartingLocation(int aNumberOfSnakes, int aSnakeId)
+{
+    std::vector<int> start; 
+
+    if(2 == aNumberOfSnakes)
+    {
+        if(0 == aSnakeId)
+        {
+            start = {X1, Y1}; 
+        }
+        if(1 == aSnakeId)
+        {
+            start = {X2, Y2};
+        }
+
+    }
+    else if (4 == aNumberOfSnakes)
+    {
+        // TODO: determine the starting locations of the 4 snakes and add here
+
+    }
+
+    return start; 
 }
 

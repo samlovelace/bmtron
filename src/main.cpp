@@ -14,11 +14,13 @@ int main()
 
     // key is simply the number of the snake
     // value is a vector containing values for color, isUser, and difficulty
-    std::map<int, std::vector<double>> gameSettings; 
+    int numberOfSnakes = 2; 
+    std::vector<sf::Color> snakeColors = {sf::Color::Green, sf::Color::Red}; 
+    Game::Settings settings = {numberOfSnakes, snakeColors};  
 
     Game* game = new Game(); 
 
-    game->init();
+    game->init(settings);
 
     while(window.isOpen())
     {
@@ -65,7 +67,6 @@ int main()
         {
             game->reset(); 
         } 
-
         
         window.clear(); 
 

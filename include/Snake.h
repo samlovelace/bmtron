@@ -4,7 +4,7 @@
 class Snake
 {
 public:
-    Snake(sf::Color aColor);
+    Snake(sf::Color aColor, int aSnakeId);
     ~Snake();
     void init(int x, int y);
     void update(); 
@@ -17,7 +17,7 @@ public:
     Segment* getHead() {return mSegments.front();}
     std::list<Segment*> getSegments() {return mSegments;}
     void setDirection(Segment::DIRECTION aDir){mSegments.front()->setDirection(aDir);}
-    void setSnakeNumber(int aNum) {mSnakeNum = aNum;}
+    void setSnakeNumber(int aNum) {mId = aNum;}
     bool isUserControlled() {return mUserControlled; }
     void setUserControlled(bool aFlag) {mUserControlled = aFlag; }
 
@@ -27,7 +27,7 @@ private:
     int mNumSegments; 
     Segment* mHead; 
     sf::Color mColor; 
-    int mSnakeNum; 
+    int mId; 
     bool mUserControlled; 
 
 
