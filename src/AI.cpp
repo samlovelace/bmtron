@@ -119,9 +119,9 @@ int AI::state(Snake& snake, AI::TRY tryDir, std::vector<Snake*> otherSnakes)
 
         for(auto seg : other->getSegments())
         {
-            if(head->x() == seg->x() && head->y() == seg->y())
+            if(try_x == seg->x() && try_y == seg->y())
             {
-                reward += 100; 
+                reward += -100; 
             }
 
         }
