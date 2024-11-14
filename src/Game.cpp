@@ -27,12 +27,12 @@ void Game::init()
     other->setUserControlled(false); 
     mSnakes.push_back(other); 
 
-    Snake* another = new Snake(sf::Color::Magenta); 
-    another->init(300, 300); 
-    another->setSnakeNumber(3); 
-    another->setUserControlled(false); 
+    // Snake* another = new Snake(sf::Color::Magenta); 
+    // another->init(300, 300); 
+    // another->setSnakeNumber(3); 
+    // another->setUserControlled(false); 
 
-    mSnakes.push_back(another); 
+    // mSnakes.push_back(another); 
 
 }
 

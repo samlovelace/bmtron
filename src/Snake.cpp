@@ -1,5 +1,6 @@
 
 #include "Snake.h"
+#include <iostream> 
 
 
 Snake::Snake(sf::Color aColor) : mColor(aColor), mNumSegments(3), mSegments(), mUserControlled(false)

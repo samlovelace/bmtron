@@ -123,12 +123,28 @@ int AI::state(Snake& snake, AI::TRY tryDir, std::vector<Snake*> otherSnakes)
             {
                 reward += -100; 
             }
-
         }
+
+        int other_x = other->getHead()->x(); 
+        int other_y = other->getHead()->y(); 
+
+        // get closer to the apple, so you can eat it
+        int diff_x = abs(head->x() - other_x); 
+        int diff_y = abs(head->y() - other_y); 
+        int try_diff_x = abs(try_x - other_x); 
+        int try_diff_y = abs(try_y - other_y); 
+
+        if(try_diff_x < diff_x)
+        {
+            reward += 5; 
+        }
+        if(try_diff_y < diff_y)
+        {
+            reward += 5; 
+        }
+
     }
-
-
-
+    
     return reward; 
 }
 

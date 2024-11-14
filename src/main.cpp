@@ -66,8 +66,7 @@ int main()
             game->reset(); 
         } 
 
-        // normally might call this but i actually 
-        // want to keep the previous drawing of the snake
+        
         window.clear(); 
 
         // draw the grid 
