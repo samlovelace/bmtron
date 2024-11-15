@@ -14,8 +14,8 @@ int main()
 
     // key is simply the number of the snake
     // value is a vector containing values for color, isUser, and difficulty
-    int numberOfSnakes = 2; 
-    std::vector<sf::Color> snakeColors = {sf::Color::Green, sf::Color::Red}; 
+    int numberOfSnakes = 4; 
+    std::vector<sf::Color> snakeColors = {sf::Color::Green, sf::Color::Red, sf::Color::Yellow, sf::Color::Blue}; 
     Game::Settings settings = {numberOfSnakes, snakeColors};  
 
     Game* game = new Game(); 
@@ -85,7 +85,7 @@ int main()
         window.display(); 
 
         // delay to make the game playable 
-        sf::sleep(sf::milliseconds(50)); 
+        sf::sleep(sf::milliseconds(75)); 
 
     }
  

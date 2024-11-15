@@ -28,7 +28,8 @@ public:
 
 private:
     std::vector<Snake*> mSnakes; 
-    AI* mAI; 
+    AI* mAI;
+    Settings mSettings;  
 
     std::vector<int> getSnakeStartingLocation(int aNumberOfSnakes, int aSnakeId); 
 

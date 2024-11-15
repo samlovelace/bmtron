@@ -13,6 +13,9 @@ Game::~Game()
 
 void Game::init(Game::Settings aSettingsStruct)
 {
+    // save off for later use
+    mSettings = aSettingsStruct; 
+
     // setup each snake 
     for(int snakeId = 0; snakeId < aSettingsStruct.mNumberOfSnakes; snakeId++)
     { 
@@ -75,7 +78,8 @@ void Game::reset()
 {
     for(auto snake : mSnakes)
     {
-        snake->reset(); 
+        std::vector<int> start = getSnakeStartingLocation(mSettings.mNumberOfSnakes, snake->getId());
+        snake->reset(start); 
     }
 }
 
@@ -98,7 +102,22 @@ std::vector<int> Game::getSnakeStartingLocation(int aNumberOfSnakes, int aSnakeI
     else if (4 == aNumberOfSnakes)
     {
         // TODO: determine the starting locations of the 4 snakes and add here
-
+        if(0 == aSnakeId)
+        {
+            start = {(MIN_X + MAX_X)/4, (MIN_Y + MAX_Y)/4}; 
+        }
+        else if (1 == aSnakeId)
+        {
+            start = {(MIN_X + MAX_X)/4, 3*(MIN_Y + MAX_Y)/4};
+        }
+        else if (2 == aSnakeId)
+        {
+            start = {3*(MIN_X + MAX_X)/4, (MIN_Y + MAX_Y)/4}; 
+        }
+        else if (3 == aSnakeId)
+        {
+            start = {3*(MIN_X + MAX_X)/4, 3*(MIN_Y + MAX_Y)/4}; 
+        }
     }
 
     return start; 

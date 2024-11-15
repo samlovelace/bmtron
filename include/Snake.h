@@ -8,7 +8,7 @@ public:
     ~Snake();
     void init(int x, int y);
     void update(); 
-    void reset(); 
+    void reset(std::vector<int> aStartingLocation); 
     bool collidedWithGrid(); 
     bool collidedWithSelf(); 
     bool collidedWithOther(Snake& other); 
@@ -20,6 +20,7 @@ public:
     void setSnakeNumber(int aNum) {mId = aNum;}
     bool isUserControlled() {return mUserControlled; }
     void setUserControlled(bool aFlag) {mUserControlled = aFlag; }
+    int getId() {return mId; }
 
 private:
     

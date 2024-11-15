@@ -100,7 +100,7 @@ bool Snake::collidedWithOther(Snake& other)
 
 }
 
-void Snake::reset()
+void Snake::reset(std::vector<int> aStartingLocation)
 {
     // delete the pointers to each segment in the vector
     for(auto seg : mSegments)
@@ -110,17 +110,7 @@ void Snake::reset()
 
     mSegments.clear(); 
 
-    if(0 == mId)
-    {
-        init(X1, Y1); 
-    }
-    else if (1 == mId)
-    {
-        init(X2, Y2); 
-    }
-    else if (2 == mId)
-    {
-        init(300, 300); 
-    }
+    // re-init the snake
+    init(aStartingLocation[0], aStartingLocation[1]);
     
 }
