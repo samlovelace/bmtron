@@ -3,7 +3,7 @@
 #include <iostream> 
 
 
-Snake::Snake(sf::Color aColor, int aSnakeId) : mColor(aColor), mNumSegments(3), mId(aSnakeId), mSegments(), mUserControlled(false)
+Snake::Snake(sf::Color aColor, int aSnakeId) : mAlive(true), mColor(aColor), mNumSegments(3), mId(aSnakeId), mSegments(), mUserControlled(false)
 {
 }
 
@@ -102,15 +102,13 @@ bool Snake::collidedWithOther(Snake& other)
 
 void Snake::reset(std::vector<int> aStartingLocation)
 {
-    // delete the pointers to each segment in the vector
+    mSegments.clear();
+    
     for(auto seg : mSegments)
     {
         delete seg; 
     }
-
-    mSegments.clear(); 
-
-    // re-init the snake
-    init(aStartingLocation[0], aStartingLocation[1]);
-    
+ 
+    revive(); 
+    init(aStartingLocation[0], aStartingLocation[1]);   
 }

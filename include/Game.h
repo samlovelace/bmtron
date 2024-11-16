@@ -19,12 +19,13 @@ public:
 
     void update(); 
 
-    bool checkCollisions(); 
+    void checkCollisions(); 
 
     void reset(); 
 
     /**************** GETTERS/SETTERS**********/
     std::vector<Snake*> getSnakes() {return mSnakes; }
+    bool didASnakeWin(); 
 
 private:
     std::vector<Snake*> mSnakes; 

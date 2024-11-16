@@ -59,14 +59,16 @@ int main()
             }
         }
 
-        // update all snakes 
-        game->update(); 
-
         // check if collisions occured 
-        if(game->checkCollisions())
+        game->checkCollisions();
+
+        if(game->didASnakeWin())
         {
             game->reset(); 
-        } 
+        }
+
+        // update all snakes 
+        game->update(); 
         
         window.clear(); 
 

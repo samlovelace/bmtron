@@ -21,6 +21,9 @@ public:
     bool isUserControlled() {return mUserControlled; }
     void setUserControlled(bool aFlag) {mUserControlled = aFlag; }
     int getId() {return mId; }
+    bool isAlive() {return mAlive; }
+    void kill() {mAlive = false;}
+    void revive() {mAlive = true; }
 
 private:
     
@@ -30,6 +33,7 @@ private:
     sf::Color mColor; 
     int mId; 
     bool mUserControlled; 
+    bool mAlive; 
 
 
 };

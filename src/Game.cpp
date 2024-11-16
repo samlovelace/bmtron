@@ -40,6 +40,11 @@ void Game::update()
 {
     for(Snake* snake : mSnakes)
     {
+        if(!snake->isAlive())
+        {
+            continue;
+        }
+
         if(!snake->isUserControlled())
         {
             mAI->move(*snake, mSnakes); 
@@ -50,13 +55,20 @@ void Game::update()
 
 }
 
-bool Game::checkCollisions()
+void Game::checkCollisions()
 {
     for(Snake* snake : mSnakes)
     {
+        // dont need to check collisions for a dead snake
+        if(!snake->isAlive())
+        {
+            continue; 
+        }
+        
         if(snake->collidedWithGrid() || snake->collidedWithSelf())
         {
-            return true; 
+            snake->kill(); 
+            continue;
         }
 
         for(Snake* other : mSnakes)
@@ -65,13 +77,12 @@ bool Game::checkCollisions()
             {
                 if(snake->collidedWithOther(*other))
                 {
-                    return true; 
+                    snake->kill(); 
+                    continue;  
                 }
             }
         }
     }
-
-    return false; 
 }
 
 void Game::reset()
@@ -81,6 +92,21 @@ void Game::reset()
         std::vector<int> start = getSnakeStartingLocation(mSettings.mNumberOfSnakes, snake->getId());
         snake->reset(start); 
     }
+}
+
+bool Game::didASnakeWin()
+{
+    int numSnakesAlive = 0; 
+    for(auto snake : mSnakes)
+    {
+        // need to check that only one snake is still alive, all others are dead 
+        if(snake->isAlive() && numSnakesAlive++ > 1)
+        {
+            return false; 
+        }
+    }
+
+    return true; 
 }
 
 std::vector<int> Game::getSnakeStartingLocation(int aNumberOfSnakes, int aSnakeId)
